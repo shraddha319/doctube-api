@@ -1,4 +1,4 @@
-const Video = require('../models/video.model');
+const Video = require('../models/video');
 const { ApplicationError, ErrorTypes } = require('../lib');
 
 const { RESOURCE_NOT_FOUND } = ErrorTypes;

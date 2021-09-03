@@ -7,7 +7,7 @@ const { PORT, NODE_ENV } = require('./config');
 const { connectDB } = require('./lib');
 const errorHandler = require('./middleware/errorHandler');
 const notFoundHandler = require('./middleware/notFoundHandler');
-const videosRouter = require('./routes/video.routes');
+const videosRouter = require('./routes/video');
 
 if (NODE_ENV !== 'test') connectDB();
 
