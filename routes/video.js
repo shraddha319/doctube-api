@@ -8,7 +8,7 @@ const {
   getVideoById,
   postVideos,
   deleteVideoById,
-} = require('../controller/video.controller');
+} = require('../controller/video');
 
 router.route('/').get(catchAsync(getVideos)).post(catchAsync(postVideos));
 
