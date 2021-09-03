@@ -7,18 +7,18 @@ const { PORT, NODE_ENV } = require('./config');
 const { connectDB } = require('./lib');
 const errorHandler = require('./middleware/errorHandler');
 const notFoundHandler = require('./middleware/notFoundHandler');
-const authRouter = require('./routes/auth.routes');
+const videosRouter = require('./routes/video.routes');
 
 if (NODE_ENV !== 'test') connectDB();
 
 const app = express();
+app.use(json());
 
 app.get('/', (req, res) => {
   res.json({ message: 'Hello, world!' });
 });
 
-app.use(json());
-app.use('/auth', authRouter);
+app.use('/videos', videosRouter);
 
 /**
  * 404 Error handler
