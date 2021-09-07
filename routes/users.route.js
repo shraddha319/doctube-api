@@ -12,18 +12,27 @@ const {
   getUserById,
   updateUserById,
   deleteUserById,
+  token,
 } = require('../validations/user.validation');
+const playlistRouter = require('./playlists.route');
 
 const router = express.Router();
 
 router.route('/').post(validate(createUser, 'User'), catchAsync(postUser));
 
-router.use('/:userId', catchAsync(validateUserId), tokenVerifier);
+router.use(
+  '/:userId',
+  validate(token),
+  catchAsync(validateUserId),
+  catchAsync(tokenVerifier),
+);
 
 router
   .route('/:userId')
   .get(validate(getUserById, 'User'), getUser)
   .post(validate(updateUserById, 'User'), catchAsync(updateUser))
   .delete(validate(deleteUserById, 'User'), catchAsync(deleteUser));
+
+router.route('/:userId/playlists', playlistRouter);
 
 module.exports = router;
