@@ -4,9 +4,9 @@ const { RESOURCE_NOT_FOUND } = ErrorTypes;
 
 const notFoundHandler = (req, res, next) => {
   const err = new ApplicationError(RESOURCE_NOT_FOUND, {
-    message: `can't find ${req.originalUrl} on server`,
+    message: `${req.originalUrl} not found`,
   });
-  next(err);
+  return next(err);
 };
 
 module.exports = notFoundHandler;

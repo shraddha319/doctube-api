@@ -9,7 +9,7 @@ const errorHandler = (err, req, res, next) => {
     error.message = err.message;
   }
 
-  if (NODE_ENV === 'production') error.stack = err.stack;
+  if (NODE_ENV === 'dev') error.stack = err.stack;
 
   return sendResponse({
     res,
