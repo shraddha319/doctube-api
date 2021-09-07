@@ -1,4 +1,4 @@
-=const Video = require('../models/video.model');
+const Video = require('../models/video.model');
 const { sendResponse, deepMerge } = require('../lib');
 
 const getVideos = async (req, res) => {

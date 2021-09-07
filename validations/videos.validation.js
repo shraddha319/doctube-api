@@ -3,7 +3,7 @@ const { objectId } = require('./custom.validation');
 
 const video = Joi.object().keys({
   youtubeId: Joi.string().required(),
-  title: Joi.string.required(),
+  title: Joi.string().required(),
   imdbPage: Joi.string(),
   imageURL: Joi.string(),
   description: Joi.string(),
@@ -11,7 +11,7 @@ const video = Joi.object().keys({
   genre: Joi.string(),
   languages: Joi.array().items(Joi.string()),
   countries: Joi.array().items(Joi.string()),
-  rating: Joi.object.keys({
+  rating: Joi.object().keys({
     imdb: Joi.number(),
     rottenTomatoes: Joi.number(),
   }),
