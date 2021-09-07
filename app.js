@@ -9,7 +9,6 @@ const { notFoundHandler, errorHandler } = require('./middlewares');
 const userRouter = require('./routes/users.route');
 const authRouter = require('./routes/auth.route');
 const videosRouter = require('./routes/videos.route');
-const playlistRouter = require('./routes/playlists.route');
 
 if (NODE_ENV !== 'test') connectDB();
 
@@ -17,10 +16,9 @@ const app = express();
 
 app.use(json());
 app.use(cors());
+app.use('/videos', videosRouter);
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
-app.use('/videos', videosRouter);
-app.use('/playlists', playlistRouter);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Hello, world!' });
