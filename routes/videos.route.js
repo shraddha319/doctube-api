@@ -6,13 +6,17 @@ const {
   getVideoById,
   postVideos,
 } = require('../controllers/video.controller');
+const validation = require('../validations/videos.validation');
 
 const router = express.Router();
 
-router.route('/').get(catchAsync(getVideos)).post(catchAsync(postVideos));
+router
+  .route('/')
+  .get(catchAsync(getVideos))
+  .post(validate(postVideos), catchAsync(postVideos));
 
 router.use('/:videoId', catchAsync(validateVideoId));
 
-router.route('/:videoId').get(getVideoById);
+router.route('/:videoId').get(validate(validation.getVideoById), getVideoById);
 
 module.exports = router;
