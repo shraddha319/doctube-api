@@ -5,9 +5,11 @@ const { json } = require('body-parser');
 const cors = require('cors');
 const { PORT, NODE_ENV } = require('./config');
 const { connectDB } = require('./lib');
-const errorHandler = require('./middleware/errorHandler');
-const notFoundHandler = require('./middleware/notFoundHandler');
-const videosRouter = require('./routes/video');
+const { notFoundHandler, errorHandler } = require('./middlewares');
+const userRouter = require('./routes/users.route');
+const authRouter = require('./routes/auth.route');
+const videosRouter = require('./routes/videos.route');
+const playlistRouter = require('./routes/playlists.route');
 
 if (NODE_ENV !== 'test') connectDB();
 
@@ -15,12 +17,14 @@ const app = express();
 
 app.use(json());
 app.use(cors());
+app.use('/auth', authRouter);
+app.use('/users', userRouter);
+app.use('/videos', videosRouter);
+app.use('/playlists', playlistRouter);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Hello, world!' });
 });
-
-app.use('/videos', videosRouter);
 
 /**
  * 404 Error handler
@@ -34,8 +38,8 @@ app.all('*', notFoundHandler);
  */
 app.use(errorHandler);
 
-if (NODE_ENV !== 'test')
-  app.listen(PORT, () => {
-    console.log('server listening on port: ', PORT);
-  });
-else module.exports = app;
+const server = app.listen(PORT, () => {
+  console.log('server listening on port: ', PORT);
+});
+
+module.exports = { app, server };
