@@ -20,12 +20,7 @@ const router = express.Router();
 
 router.route('/').post(validate(createUser, 'User'), catchAsync(postUser));
 
-router.use(
-  '/:userId',
-  validate(token),
-  catchAsync(validateUserId),
-  catchAsync(tokenVerifier),
-);
+router.use('/:userId', catchAsync(validateUserId), tokenVerifier);
 
 router
   .route('/:userId')
@@ -33,6 +28,6 @@ router
   .post(validate(updateUserById, 'User'), catchAsync(updateUser))
   .delete(validate(deleteUserById, 'User'), catchAsync(deleteUser));
 
-router.route('/:userId/playlists', playlistRouter);
+router.use('/:userId/playlists', playlistRouter);
 
 module.exports = router;

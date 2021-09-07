@@ -14,7 +14,7 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(validate(validation.getPlaylistsOfUser), catchAsync(getPlaylistsOfUser))
+  .get(catchAsync(getPlaylistsOfUser))
   .post(validate(validation.postPlaylist), catchAsync(postPlaylist));
 
 router.use('/:playlistId', catchAsync(validatePlaylistId));
