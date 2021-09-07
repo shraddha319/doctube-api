@@ -1,8 +1,22 @@
 const { User } = require('../models/user.model');
+const Playlist = require('../models/playlist.model');
 const { sendResponse, deepMerge } = require('../lib');
 
 const postUser = async (req, res, next) => {
   const savedUser = await User.create(req.body);
+  await Playlist.create([
+    {
+      name: 'Liked',
+      user: savedUser._id,
+      videos: [],
+    },
+    {
+      name: 'Watch Later',
+      user: savedUser._id,
+      videos: [],
+    },
+  ]);
+
   return sendResponse({
     res,
     success: true,
