@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Playlist = mongoose.Schema(
+const playlistSchema = mongoose.Schema(
   {
     // _id: playlist ID
     name: {
@@ -25,5 +25,7 @@ const Playlist = mongoose.Schema(
     timestamps: true,
   },
 );
+
+const Playlist = mongoose.model('Playlist', playlistSchema);
 
 module.exports = Playlist;
