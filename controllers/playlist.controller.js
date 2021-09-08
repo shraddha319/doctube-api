@@ -42,7 +42,9 @@ const getPlaylistsOfUser = async (req, res) => {
   return sendResponse({
     res,
     success: true,
-    payload: { playlists },
+    payload: {
+      playlists,
+    },
   });
 };
 
@@ -53,7 +55,7 @@ const updatePlaylistById = async (req, res) => {
   playlist.videos =
     body.type === 'add'
       ? playlist.videos.concat(body.videos)
-      : playlist.videos.filter((id) => !body.videos.includes(String(id)));
+      : playlist.videos.filter(({ _id }) => !body.videos.includes(String(_id)));
 
   await playlist.save();
   return sendResponse({ res, success: true, statusCode: 204 });
