@@ -1,5 +1,5 @@
 const Playlist = require('../models/playlist.model');
-const { sendResponse, deepMerge } = require('../lib');
+const { sendResponse } = require('../lib');
 
 const postPlaylist = async (req, res) => {
   const { userId, body: playlist } = req;
@@ -43,7 +43,13 @@ const getPlaylistsOfUser = async (req, res) => {
 
 const updatePlaylistById = async (req, res) => {
   const { playlist, body } = req;
-  deepMerge(playlist, body);
+  playlist.name = body?.name ? body.name : playlist.name;
+
+  playlist.videos =
+    body.type === 'add'
+      ? playlist.videos.concat(body.videos)
+      : playlist.videos.filter((id) => !body.videos.includes(String(id)));
+
   await playlist.save();
   return sendResponse({ res, success: true, statusCode: 204 });
 };

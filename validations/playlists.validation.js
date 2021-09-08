@@ -21,6 +21,7 @@ const updatePlaylistById = {
   body: Joi.object().keys({
     name: Joi.string(),
     videos: Joi.array().items(objectId),
+    type: Joi.string().valid('add', 'remove').required(),
   }),
 };
 
