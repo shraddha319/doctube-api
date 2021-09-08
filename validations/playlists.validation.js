@@ -4,7 +4,7 @@ const { objectId } = require('./custom.validation');
 const postPlaylist = {
   body: Joi.object().keys({
     name: Joi.string().required(),
-    videoId: Joi.string().custom(objectId),
+    videos: Joi.array().items(objectId),
   }),
 };
 

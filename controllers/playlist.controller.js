@@ -7,7 +7,7 @@ const postPlaylist = async (req, res) => {
   const savedPlaylist = await Playlist.create({
     name: playlist.name,
     user: userId,
-    videos: playlist.videoId ? [playlist.videoId] : [],
+    videos: playlist.videos || [],
   });
 
   return sendResponse({
