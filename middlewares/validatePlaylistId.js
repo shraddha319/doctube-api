@@ -5,7 +5,9 @@ const { RESOURCE_NOT_FOUND } = ErrorTypes;
 
 const validatePlaylistId = async (req, res, next) => {
   const { playlistId } = req.params;
-  const playlist = await Playlist.findById(playlistId);
+  const playlist = await Playlist.findById(playlistId)
+    .populate('videos')
+    .exec();
 
   if (!playlist)
     return next(

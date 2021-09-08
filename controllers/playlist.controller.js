@@ -9,16 +9,19 @@ const postPlaylist = async (req, res) => {
     user: userId,
     videos: playlist.videos || [],
   });
+  const populatedPlaylist = await savedPlaylist
+    .populate('videos')
+    .execPopulate();
 
   return sendResponse({
     res,
     success: true,
-    payload: { playlist: savedPlaylist },
+    payload: { playlist: populatedPlaylist },
     statusCode: 201,
   });
 };
 
-const getPlaylistById = (req, res) => {
+const getPlaylistById = async (req, res) => {
   const { playlist } = req;
 
   return sendResponse({
@@ -32,7 +35,9 @@ const getPlaylistsOfUser = async (req, res) => {
   const { userId } = req;
   const playlists = await Playlist.find({
     user: userId,
-  });
+  })
+    .populate('videos')
+    .exec();
 
   return sendResponse({
     res,
