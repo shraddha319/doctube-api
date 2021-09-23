@@ -11,7 +11,7 @@ const getVideos = async (req, res) => {
 };
 
 const postVideos = async (req, res) => {
-  const savedVideos = await Video.create(req.body);
+  const savedVideos = await Video.create(req.body.videos);
   return sendResponse({
     res,
     success: true,
