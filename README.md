@@ -4,6 +4,18 @@ _REST API for the video library web application [doctube](https://github.com/shr
 
 Built using this [REST API boilerplate](https://github.com/shraddha319/REST-API-boilerplate)
 
+## Features
+
+- **Error Handling**: centralized error handling mechanism
+- **Authentication and Authorization**: using [JWT](https://jwt.io)
+- **NoSQL database**: [MongoDB](https://www.mongodb.com)
+- **Object Data Modeling**:using [Mongoose](https://mongoosejs.com)
+- **Validation**: using [Joi](https://github.com/sideway/joi)
+- **CORS**: Cross-Origin Resource Sharing enabled using [cors](https://github.com/expressjs/cors)
+- **Environment Variables**: using [dotenv](https://github.com/motdotla/dotenv)
+- **Dependency Management**: using [npm](https://www.npmjs.com)
+- **Linting**: using [ESLint](https://eslint.org) and [Prettier](https://prettier.io)
+
 ## Quick Start
 
 Get started with the below steps:
@@ -67,18 +79,6 @@ npm run lint
 # fix ESLint errors
 npm run lint:fix
 ```
-
-## Features
-
-- **Error Handling**: centralized error handling mechanism
-- **Authentication and Authorization**: using [JWT](https://jwt.io)
-- **NoSQL database**: [MongoDB](https://www.mongodb.com)
-- **Object Data Modeling**:using [Mongoose](https://mongoosejs.com)
-- **Validation**: using [Joi](https://github.com/sideway/joi)
-- **CORS**: Cross-Origin Resource Sharing enabled using [cors](https://github.com/expressjs/cors)
-- **Environment Variables**: using [dotenv](https://github.com/motdotla/dotenv)
-- **Dependency Management**: using [npm](https://www.npmjs.com)
-- **Linting**: using [ESLint](https://eslint.org) and [Prettier](https://prettier.io)
 
 ## API Documentation
 
