@@ -16,7 +16,7 @@ const createUser = {
         'string.pattern.base': 'Must have only letters',
       }),
     firstName: Joi.string().required(),
-    lastName: Joi.string(),
+    lastName: Joi.string().allow(''),
   }),
 };
 
@@ -34,7 +34,7 @@ const updateUserById = {
     email: Joi.string().email(),
     password: Joi.string().custom(password),
     firstName: Joi.string(),
-    lastName: Joi.string(),
+    lastName: Joi.string().allow(''),
   }),
 };
 
